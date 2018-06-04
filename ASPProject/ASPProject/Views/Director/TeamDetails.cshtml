@@ -1,0 +1,42 @@
+﻿@model ASPProject.Models.TeamViewModel
+
+@{
+    ViewBag.Title = "TeamDetails";
+    Layout = "~/Views/Shared/_LayoutDirector.cshtml";
+}
+
+<style>
+    body, .container {
+        background-color: #F0CA4D;
+    }
+</style>
+<div class="row" style="background-color:#E37B40; padding-top:5px; margin:10px;font-size:25px;">
+    <p>@Model.Name</p>
+    <p>Szef: @Model.DirectorName</p>
+</div>
+<div class="row">
+    <div class="col" style="background-color:#E37B40; padding-top:5px; margin:10px">
+        <h2>Członkowie zespołu: </h2>
+        @foreach (var item in Model.Members)
+    {
+        <div class="col" style="border-bottom:5px">
+            <a href="@Url.Action("DetailsWorker", "Director", new { id = item.Id})" class="nav-link">
+                <i class="fas fa-user fa-lg nav-link"> @item.FirstName @item.LastName </i>
+            </a>
+        </div>
+        <div class="col" style="border-bottom:5px">
+            <p>
+                <a href="@Url.Action("DetailsWorker", "Director")" class="nav-link">
+                    <i class="fas fa-user fa-lg nav-link"> Wydal z zespołu </i>
+                </a>
+            </p>
+        </div>
+}
+        </div>
+    </div>
+    </div>
+    <div class="row">
+        <div class="col" style="background-color:#E37B40; border-top:solid 4px; padding-top:5px;">
+
+        </div>
+    </div>

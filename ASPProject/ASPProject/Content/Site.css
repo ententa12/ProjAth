@@ -1,0 +1,63 @@
+﻿a:link, a:visited {
+    color: darkred ;
+    padding: 14px 25px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+}
+
+
+body {
+    padding-bottom: 20px;
+    background-color: #F0CA4D;
+}
+.myBtn {
+    background-color: #545677;
+    border-color: #545677;
+    color: white;
+}
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+    background-color: #F0CA4D;
+}
+.header {
+    background-color: #808080;
+    height: 100px;
+    margin-bottom: 60px;
+}
+.nav-item{
+    margin-top:20px;
+}
+.navbar {
+    margin-bottom: 20px;
+    background-color: #545677;
+}
+
+.centerLogin {
+    margin: auto;
+    border-radius: 20px;
+    padding: 100px;
+    width: 50%;
+    background-color: #46B29D;
+}
+.center {
+    margin: auto;
+    border-radius: 20px;
+    padding: 40px;
+    background-color: #F0CA4D;
+}
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}

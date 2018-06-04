@@ -1,0 +1,43 @@
+﻿@model ASPProject.Models.AddTeamViewModel
+
+@{
+    ViewBag.Title = "AddTeam";
+    Layout = "~/Views/Shared/_LayoutDirector.cshtml";
+}
+
+<div class="row">
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="col">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="col">
+            @foreach (var item in Model.AvailableWorkers)
+            {
+                <div class="form-check">
+                    <label class="form-check-label">
+                        <input class="form-check-input"
+                               type="checkbox"
+                               name="SelectedWorkers"
+                               value="@item.Value" /> @item.Text
+                        </label>
+                    </div>
+                }
+        </div>
+
+        <div class="row">
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Create" class="btn btn-default" />
+                </div>
+            </div>
+        </div>
+    }
+</div>

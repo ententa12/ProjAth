@@ -1,0 +1,83 @@
+﻿@model ASPProject.Models.DetailsWorkerViewModel
+
+@{
+    ViewBag.Title = "DetailsWorker";
+    Layout = "~/Views/Shared/_LayoutDirector.cshtml";
+}
+<style>
+    body, .container {
+        background-color: #F0CA4D;
+    }
+</style>
+<div class="row">
+    <div class="col" style="background-color:#E37B40; padding-top:5px; margin:10px;font-size:25px;">
+        <h2>Dane Pracownika</h2>
+        <dl class="dl-horizontal" >
+            <dt>
+                @Html.DisplayNameFor(model => model.FirstName)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.FirstName)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.LastName)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.LastName)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Email)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Email)
+            </dd>
+
+        </dl>
+    </div>
+    <div class="col" style="background-color:#E37B40; padding-top:5px; margin:10px">
+        <h2>Zespoły</h2>
+        @foreach (var item in Model.Teams)
+        {
+            <div style="border-bottom:5px">
+                <a href="@Url.Action("Team", "Director")" class="nav-link">
+                    <i class="fas fa-users fa-lg nav-link"> @item.Name </i>
+                </a>
+            </div>
+        }
+    </div>
+</div>
+<div class="row">
+    <div class="col" style="background-color:#E37B40; border-top:solid 4px; padding-top:5px;">
+    <h2>Zadania</h2>
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">Nazwa</th>
+                    <th scope="col">Czas pracy</th>
+                    <th scope="col">Przewidywany czas</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Zespół</th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.Tasks)
+                {
+                    <tr>
+                        <td>@item.Name</td>
+                        <td>@item.Time</td>
+                        <td>@item.ExpectedTime</td>
+                        <td>@item.Status</td>
+                        <td>@item.TeamName</td>
+                        <td>@Html.ActionLink("Szczegóły", "DetailsTask", new { id = item.Id })</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

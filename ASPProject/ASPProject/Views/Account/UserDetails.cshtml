@@ -1,0 +1,72 @@
+﻿@model ASPProject.Models.UserDetailsViewModel
+
+@{
+    ViewBag.Title = "UserDetails";
+    if (ViewBag.Role == "Secretary") { Layout = "~/Views/Shared/_LayoutSecretary.cshtml"; }
+    else
+    {
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+}
+<div class="center">
+    <h2>UserDetails</h2>
+
+    <div>
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.FirstName)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.FirstName)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.LastName)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.LastName)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Email)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Email)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Roles)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Roles)
+            </dd>
+
+        </dl>
+    </div>
+    <p>
+        <button onclick="DisplayEdit('Password')" class="btn btn-primary">Zmień Hasło</button>
+        <button onclick="DisplayEdit('Edit')" class="btn btn-primary">Edytuj</button>
+
+    </p>
+    <div id="Edit" style="display: none;">
+        @Html.Partial("_EditUser");
+    </div>
+    <div id="Password" style="display: none;">
+        @Html.Partial("_ChangePassword", new ASPProject.Models.ChangePasswordViewModel());
+    </div>
+</div>
+
+<script>
+    function DisplayEdit(id) {
+        var x = document.getElementById(id);
+        if (x.style.display === "none") {
+            x.style.display = "block";
+        } else {
+            x.style.display = "none";
+        }
+    } 
+</script>

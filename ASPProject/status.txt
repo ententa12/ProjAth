@@ -1,0 +1,3 @@
+Users:
+Secretary, Director, User
+Task: free, started, waiting, finished, abandoned, in progress
