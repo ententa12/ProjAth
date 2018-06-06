@@ -62,8 +62,8 @@ namespace ASPProject.Controllers
             var temp = _db.GetTask(id);
             var model = new TaskSupExtendedViewModel()
             {
-                FirstName = temp.CurrentUser.FirstName,
-                LastName = temp.CurrentUser.LastName,
+                FirstName = temp.CurrentUser!=null? temp.CurrentUser.FirstName:"Nieprzydzielone",
+                LastName = temp.CurrentUser != null ? temp.CurrentUser.LastName : "Nieprzydzielone",
                 Id = temp.Id,
                 Description = temp.Description,
                 ExpectedTime = temp.ExpectedTime,
@@ -85,7 +85,7 @@ namespace ASPProject.Controllers
         {
             var model = new AddTeamViewModel()
             {
-                AvailableWorkers = _db.GetUsers().Select(p => new SelectListItem()
+                AvailableWorkers = _db.GetUsers().Where(p=>p.Roles=="User").Select(p => new SelectListItem()
                 {
                     Text = p.Email + " " + p.UserDetails.FirstName + " " + p.UserDetails.LastName,
                     Value = p.UserDetailsId.ToString()

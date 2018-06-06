@@ -1,0 +1,24 @@
+CREATE TABLE [dbo].[Tasks] (
+    [Id]           INT            IDENTITY (1, 1) NOT NULL,
+    [Name]         NVARCHAR (MAX) NULL,
+    [Description]  NVARCHAR (MAX) NULL,
+    [Time]         FLOAT (53)     NOT NULL,
+    [Status]       INT            NOT NULL,
+    [ExpectedTime] FLOAT (53)     NOT NULL,
+    [UserId]       INT            NULL,
+    [Team_Id]      INT            NULL,
+    CONSTRAINT [PK_dbo.Tasks] PRIMARY KEY CLUSTERED ([Id] ASC),
+    CONSTRAINT [FK_dbo.Tasks_dbo.UserDetails_UserId] FOREIGN KEY ([UserId]) REFERENCES [dbo].[UserDetails] ([Id]) ON DELETE CASCADE,
+    CONSTRAINT [FK_dbo.Tasks_dbo.Teams_Team_Id] FOREIGN KEY ([Team_Id]) REFERENCES [dbo].[Teams] ([Id])
+);
+
+
+GO
+CREATE NONCLUSTERED INDEX [IX_UserId]
+    ON [dbo].[Tasks]([UserId] ASC);
+
+
+GO
+CREATE NONCLUSTERED INDEX [IX_Team_Id]
+    ON [dbo].[Tasks]([Team_Id] ASC);
+

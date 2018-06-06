@@ -4,14 +4,10 @@
     ViewBag.Title = "DetailsTask";
     Layout = "~/Views/Shared/_LayoutDirector.cshtml";
 }
-<style>
-    body, .container {
-        background-color: #cbcfd6;
-    }
-</style>
+
 <div class="row">
     <div class="col">
-        <h2>Wykonawca zadania</h2>
+        <h3>Wykonawca zadania</h3>
         <dl class="dl-horizontal">
             <dt>
                 @Html.DisplayNameFor(model => model.FirstName)
@@ -34,7 +30,7 @@
         </dl>
     </div>
 </div>
-    <h2>Szczegóły zadania</h2>
+    <h3>Szczegóły zadania</h3>
 <div class="row">
     <div class="col">
         <dl class="dl-horizontal">
@@ -75,14 +71,14 @@
                 @Html.DisplayNameFor(model => model.Time)
             </dt>
             <dd>
-                @Html.DisplayFor(model => model.Time)
+                @Html.DisplayFor(model => model.Time) min
             </dd>
         </dl>
     </div>
 </div>
 <div class="row">
-    <table class="table">
-        <thead class="thead-dark">
+    <table class="table table-striped table-hover table-primary">
+        <thead>
             <tr>
                 <th scope="col">Data</th>
                 <th scope="col">Godzina rozpoczęcia</th>
@@ -94,10 +90,10 @@
             @foreach (var item in Model.Works)
             {
                 <tr>
-                    <td>@item.Date</td>
-                    <td>@item.StartHour</td>
-                    <td>@item.EndHour</td>
-                    <td>@(item.EndHour - item.StartHour)</td>
+                    <td>@item.Date.Value.ToString("d")</td>
+                    <td>@item.StartHour.Value.ToString("hh\\:mm")</td>
+                    <td>@item.EndHour.Value.ToString("hh\\:mm")</td>
+                    <td>@((item.EndHour - item.StartHour).Value.ToString("hh\\:mm"))</td>
                 </tr>
             }
         </tbody>

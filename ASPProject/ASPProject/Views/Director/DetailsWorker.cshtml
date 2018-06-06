@@ -4,14 +4,10 @@
     ViewBag.Title = "DetailsWorker";
     Layout = "~/Views/Shared/_LayoutDirector.cshtml";
 }
-<style>
-    body, .container {
-        background-color: #F0CA4D;
-    }
-</style>
+
 <div class="row">
-    <div class="col" style="background-color:#E37B40; padding-top:5px; margin:10px;font-size:25px;">
-        <h2>Dane Pracownika</h2>
+    <div class="col" style="padding-top:5px; margin:10px;font-size:25px;">
+        <h3>Dane Pracownika</h3>
         <dl class="dl-horizontal" >
             <dt>
                 @Html.DisplayNameFor(model => model.FirstName)
@@ -39,12 +35,12 @@
 
         </dl>
     </div>
-    <div class="col" style="background-color:#E37B40; padding-top:5px; margin:10px">
-        <h2>Zespoły</h2>
+    <div class="col" style="padding-top:5px; margin:10px">
+        <h3>Zespoły</h3>
         @foreach (var item in Model.Teams)
         {
             <div style="border-bottom:5px">
-                <a href="@Url.Action("Team", "Director")" class="nav-link">
+                <a href="@Url.Action("TeamDetails", "Director",new { id = item.Id})" class="nav-link">
                     <i class="fas fa-users fa-lg nav-link"> @item.Name </i>
                 </a>
             </div>
@@ -52,9 +48,9 @@
     </div>
 </div>
 <div class="row">
-    <div class="col" style="background-color:#E37B40; border-top:solid 4px; padding-top:5px;">
-    <h2>Zadania</h2>
-        <table class="table">
+    <div class="col" style="border-top:solid 4px; padding-top:5px;">
+    <h3>Zadania</h3>
+        <table class="table table-striped table-hover table-primary">
             <thead class="thead-dark">
                 <tr>
                     <th scope="col">Nazwa</th>
@@ -74,7 +70,7 @@
                         <td>@item.ExpectedTime</td>
                         <td>@item.Status</td>
                         <td>@item.TeamName</td>
-                        <td>@Html.ActionLink("Szczegóły", "DetailsTask", new { id = item.Id })</td>
+                        <td><button class="btn" style="background-color:#7e8289" onclick="location.href='@Url.Action("DetailsTask", "Director", new { id = item.Id })'">Szczegóły</button></td>
                     </tr>
                 }
             </tbody>

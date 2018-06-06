@@ -4,13 +4,8 @@
     ViewBag.Title = "TaskDetails";
     Layout = "~/Views/Shared/_LayoutUser.cshtml";
 }
-<style>
-    body, .container {
-        background-color: #cbcfd6;
-    }
-</style>
+
 <div class="row">
-    <h2>Zadanie</h2>
     <div class="col">
         @using (Html.BeginForm("ModyfyTask", "User", new { id = Model.Id }, FormMethod.Post))
         {
@@ -45,7 +40,7 @@
 
                 <div class="form-group">
                     <div class="col-md-offset-2 col-md-10">
-                        <input type="submit" value="Create" class="btn btn-primary" />
+                        <input type="submit" value="Zatwierdź zmiany" class="btn btn-primary" />
                     </div>
                 </div>
             </div>

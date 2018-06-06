@@ -4,8 +4,8 @@
     ViewBag.Title = "Create";
     Layout = "~/Views/Shared/_LayoutSecretary.cshtml";
 }
-<div class="center">
-    <h2>Dodaj kolejnego pracownika</h2>
+<div>
+    <h4>Dodaj pracownika</h4>
 
 
     @using (Html.BeginForm())
@@ -55,9 +55,6 @@
         </div>
     }
 </div>
-    <div>
-        @Html.ActionLink("Back to List", "Index")
-    </div>
 
     @section Scripts {
         @Scripts.Render("~/bundles/jqueryval")

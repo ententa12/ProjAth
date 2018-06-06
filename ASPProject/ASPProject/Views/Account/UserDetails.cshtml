@@ -3,7 +3,7 @@
 @{
     ViewBag.Title = "UserDetails";
     if (ViewBag.Role == "Secretary") { Layout = "~/Views/Shared/_LayoutSecretary.cshtml"; }
-    else if(ViewBag.Role == "Director")
+    else if (ViewBag.Role == "Director")
     {
         Layout = "~/Views/Shared/_LayoutDirector.cshtml";
     }
@@ -12,9 +12,9 @@
         Layout = "~/Views/Shared/_LayoutUser.cshtml";
     }
 }
-<div class="center">
-    <h2>Moje Dane</h2>
-    <div>
+<h4>Moje Dane</h4>
+<div class="row">
+    <div class="col">
         <dl class="dl-horizontal">
             <dt>
                 @Html.DisplayNameFor(model => model.FirstName)
@@ -49,15 +49,15 @@
             </dd>
 
         </dl>
-    </div>
     <p>
         <button onclick="DisplayEdit('Password')" class="btn btn-primary">Zmień Hasło</button>
     </p>
-    <div id="Password" style="display: none;">
+    </div>
+
+    <div class="col" id="Password" style="display: none;">
         @Html.Partial("_ChangePassword", new ASPProject.Models.ChangePasswordViewModel());
     </div>
 </div>
-
 <script>
     function DisplayEdit(id) {
         var x = document.getElementById(id);
@@ -66,5 +66,5 @@
         } else {
             x.style.display = "none";
         }
-    } 
+    }
 </script>

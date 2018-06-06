@@ -7,10 +7,7 @@
 
 <h2>FreeTeamTasks</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
+<table class="table table-striped table-hover table-primary">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.Name)
@@ -24,7 +21,7 @@
             @Html.DisplayFor(modelItem => item.Name)
         </td>
         <td>
-            @Html.ActionLink("Poedejmij się zadania", "TakeTask", new { id=item.Id },FormMethod.Post)
+            <button class="btn" style="background-color:#7e8289" onclick="location.href='@Url.Action("TakeTask", "User", new { id = item.Id })'">Poedejmij się zadania</button>
         </td>
     </tr>
 }

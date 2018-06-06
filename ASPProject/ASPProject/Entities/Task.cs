@@ -1,13 +1,18 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ASPProject.Entities
 {
     public enum TaskStatus
     {
+        [Display(Name = "Porzucone")]
         abandoned,
+        [Display(Name = "Oczekujące")]
         waiting,
+        [Display(Name = "W trakcie")]
         inProgress,
+        [Display(Name = "Zakończone")]
         finished
     }
 

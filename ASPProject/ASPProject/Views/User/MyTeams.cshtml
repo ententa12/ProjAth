@@ -5,18 +5,12 @@
     Layout = "~/Views/Shared/_LayoutUser.cshtml";
 }
 
-<h2>MyTeams</h2>
+<h2>Moje zespoły</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
+<table class="table table-striped table-hover table-primary">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.Name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.DirectorName)
         </th>
         <th></th>
     </tr>
@@ -27,10 +21,7 @@
             @Html.DisplayFor(modelItem => item.Name)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.DirectorName)
-        </td>
-        <td>
-            @Html.ActionLink("Zadania do wzięcia", "FreeTeamTasks", new { id=item.Id })
+            <button class="btn" style="background-color:#7e8289" onclick="location.href='@Url.Action("FreeTeamTasks", "User", new { id = item.Id })'">Zadania do wzięcia</button>
         </td>
     </tr>
 }
