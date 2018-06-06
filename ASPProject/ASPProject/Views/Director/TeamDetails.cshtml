@@ -18,25 +18,95 @@
     <div class="col" style="background-color:#E37B40; padding-top:5px; margin:10px">
         <h2>Członkowie zespołu: </h2>
         @foreach (var item in Model.Members)
-    {
-        <div class="col" style="border-bottom:5px">
-            <a href="@Url.Action("DetailsWorker", "Director", new { id = item.Id})" class="nav-link">
-                <i class="fas fa-user fa-lg nav-link"> @item.FirstName @item.LastName </i>
-            </a>
-        </div>
-        <div class="col" style="border-bottom:5px">
-            <p>
-                <a href="@Url.Action("DetailsWorker", "Director")" class="nav-link">
-                    <i class="fas fa-user fa-lg nav-link"> Wydal z zespołu </i>
-                </a>
-            </p>
-        </div>
-}
-        </div>
+        {
+            <div class="row">
+                <div class="col" style="border-bottom:5px">
+                    <a href="@Url.Action("DetailsWorker", "Director", new { id = item.Id})" class="nav-link">
+                        <i class="fas fa-user fa-lg nav-link"> @item.FirstName @item.LastName </i>
+                    </a>
+                </div>
+                <div class="col" style="border-bottom:5px">
+                    <p>
+                        <a href="@Url.Action("DetailsWorker", "Director")" class="nav-link">
+                            <i class="fas fa-user fa-lg nav-link"> Wydal z zespołu </i>
+                        </a>
+                    </p>
+                </div>
+            </div>
+        }
     </div>
-    </div>
-    <div class="row">
-        <div class="col" style="background-color:#E37B40; border-top:solid 4px; padding-top:5px;">
+</div>
+<button onclick="DisplayEdit('Add')" class="btn btn-primary">Dodaj zadanie</button>
+<div id="Add" style="display: none;">
+    @Html.Action("AddTask", new { id = Model.Id });
+</div>
+<div class="row" style="margin:10px">
+    <div class="col" style="background-color:forestgreen; border-top:solid 4px; padding-top:5px;">
+        <p class="headerTask">Oczekujące</p>
+        @foreach (var item in Model.Tasks.Where(p => p.Status == ASPProject.Entities.TaskStatus.waiting))
+        {
+            <div class="row">
+                <div class="col taskZone" style="border-bottom:5px">
+                    <a href="@Url.Action("DetailsTask", new { id = item.Id })">
+                        <p>@item.Name</p>
+                    </a>
+                    <p>@item.FirstName  @item.LastName</p>
+                </div>
+            </div>
+        }
 
-        </div>
     </div>
+    <div class="col" style="background-color:cornflowerblue; border-top:solid 4px; padding-top:5px;">
+        <p class="headerTask">W trakcie</p>
+        @foreach (var item in Model.Tasks.Where(p => p.Status == ASPProject.Entities.TaskStatus.inProgress))
+        {
+            <div class="row">
+                <div class="col taskZone" style="border-bottom:5px">
+                    <a href="@Url.Action("DetailsTask", new { id = item.Id })">
+                        <p>@item.Name</p>
+                    </a>
+                    <p>@item.FirstName  @item.LastName</p>
+                </div>
+            </div>
+        }
+    </div>
+    <div class="col" style="background-color:darkgoldenrod; border-top:solid 4px; padding-top:5px;">
+        <p class="headerTask">Ukończone</p>
+        @foreach (var item in Model.Tasks.Where(p => p.Status == ASPProject.Entities.TaskStatus.finished))
+        {
+            <div class="row">
+                <div class="col taskZone" style="border-bottom:5px">
+                    <a href="@Url.Action("DetailsTask", new { id = item.Id })">
+                        <p>@item.Name</p>
+                    </a>
+                    <p>@item.FirstName  @item.LastName</p>
+                </div>
+            </div>
+        }
+    </div>
+    <div class="col" style="background-color:darkred; border-top:solid 4px; padding-top:5px;">
+        <p class="headerTask">Porzucone</p>
+        @foreach (var item in Model.Tasks.Where(p => p.Status == ASPProject.Entities.TaskStatus.abandoned))
+        {
+            <div class="row">
+                <div class="col taskZone" style="border-bottom:5px">
+                    <a href="@Url.Action("DetailsTask", new { id = item.Id })">
+                        <p>@item.Name</p>
+                    </a>
+                    <p>@item.FirstName  @item.LastName</p>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+<script>
+    function DisplayEdit(id) {
+        var x = document.getElementById(id);
+        if (x.style.display === "none") {
+            x.style.display = "block";
+        } else {
+            x.style.display = "none";
+        }
+    }
+</script>

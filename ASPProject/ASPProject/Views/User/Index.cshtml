@@ -1,0 +1,67 @@
+﻿@model List<ASPProject.Models.TaskUserViewModel>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+
+<div class="row" style="margin:10px">
+    <div class="col" style="background-color:forestgreen; border-top:solid 4px; padding-top:5px;">
+        <p class="headerTask">Oczekujące</p>
+        @foreach (var item in Model.Where(p => p.Status == ASPProject.Entities.TaskStatus.waiting))
+        {
+            <div class="row">
+                <div class="col taskZone" style="border-bottom:5px">
+                    <a href="@Url.Action("TaskDetails", new { id = item.Id })">
+                        <p>@item.Name</p>
+                    </a>
+                    <p>@item.TeamName</p>
+                </div>
+            </div>
+        }
+
+    </div>
+    <div class="col" style="background-color:cornflowerblue; border-top:solid 4px; padding-top:5px;">
+        <p class="headerTask">W trakcie</p>
+        @foreach (var item in Model.Where(p => p.Status == ASPProject.Entities.TaskStatus.inProgress))
+        {
+            <div class="row">
+                <div class="col taskZone" style="border-bottom:5px">
+                    <a href="@Url.Action("TaskDetails", new { id = item.Id })">
+                        <p>@item.Name</p>
+                    </a>
+                    <p>@item.TeamName</p>
+                </div>
+            </div>
+        }
+    </div>
+    <div class="col" style="background-color:darkgoldenrod; border-top:solid 4px; padding-top:5px;">
+        <p class="headerTask">Ukończone</p>
+        @foreach (var item in Model.Where(p => p.Status == ASPProject.Entities.TaskStatus.finished))
+        {
+            <div class="row">
+                <div class="col taskZone" style="border-bottom:5px">
+                    <a href="@Url.Action("TaskDetails", new { id = item.Id })">
+                        <p>@item.Name</p>
+                    </a>
+                    <p>@item.TeamName</p>
+                </div>
+            </div>
+        }
+    </div>
+    <div class="col" style="background-color:darkred; border-top:solid 4px; padding-top:5px;">
+        <p class="headerTask">Porzucone</p>
+        @foreach (var item in Model.Where(p => p.Status == ASPProject.Entities.TaskStatus.abandoned))
+        {
+            <div class="row">
+                <div class="col taskZone" style="border-bottom:5px">
+                    <a href="@Url.Action("TaskDetails", new { id = item.Id })">
+                        <p>@item.Name</p>
+                    </a>
+                    <p>@item.TeamName</p>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+

@@ -124,3 +124,4 @@ C:\Users\KiszczakPatryk\Documents\Visual Studio 2017\Projects\ASPProject\ASPProj
 C:\Users\KiszczakPatryk\Documents\Visual Studio 2017\Projects\ASPProject\ASPProject\obj\Debug\ASPProject.Migrations.oneToOneUserUserDetails.resources
 C:\Users\KiszczakPatryk\Documents\Visual Studio 2017\Projects\ASPProject\ASPProject\obj\Debug\ASPProject.Migrations.StatusEnumTask.resources
 C:\Users\KiszczakPatryk\Documents\Visual Studio 2017\Projects\ASPProject\ASPProject\obj\Debug\ASPProject.Migrations.StartEndTimeInWork.resources
+C:\Users\KiszczakPatryk\Documents\Visual Studio 2017\Projects\ASPProject\ASPProject\obj\Debug\ASPProject.Migrations.NulableUserInTask.resources

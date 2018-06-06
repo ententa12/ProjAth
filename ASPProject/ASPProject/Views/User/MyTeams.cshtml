@@ -1,0 +1,38 @@
+﻿@model IEnumerable<ASPProject.Models.TeamViewModel>
+
+@{
+    ViewBag.Title = "MyTeams";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+
+<h2>MyTeams</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DirectorName)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DirectorName)
+        </td>
+        <td>
+            @Html.ActionLink("Zadania do wzięcia", "FreeTeamTasks", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>

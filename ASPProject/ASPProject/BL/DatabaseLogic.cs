@@ -16,6 +16,30 @@ namespace ASPProject.BL
             _context = new ProjectContext();
         }
 
+        public void AddWork(int idTask)
+        {
+            Work w = new Work()
+            {
+                Date = DateTime.Now,
+                StartHour = DateTime.Now.TimeOfDay,
+                EndHour = null,
+                Task = GetTask(idTask),
+                User = GetTask(idTask).CurrentUser
+            };
+            _context.Works.Add(w);
+            _context.SaveChanges();
+        }
+
+        internal void EndWork(int idTask)
+        {
+            var t = GetTask(idTask);
+            var w = t.Works.Where(p => p.EndHour == null).LastOrDefault();
+            w.EndHour = DateTime.Now.TimeOfDay;
+            t.Time = t.Works.Select(p => p.EndHour.Value - p.StartHour.Value).Sum(p => p.TotalMinutes);
+            _context.Entry(w);
+            _context.SaveChanges();
+        }
+
         public Team GetTeam(int id)
         {
             return _context.Teams.Find(id);
@@ -34,6 +58,16 @@ namespace ASPProject.BL
         public User GetUserByEmail(string email)
         {
             return _context.Users.Where(p => p.Email == email).FirstOrDefault();
+        }
+
+        public void ModyfiTaskByUser(int id, Task task)
+        {
+            var modeTask = GetTask(id);
+            modeTask.Name = task.Name;
+            modeTask.Status = task.Status;
+            modeTask.Description = task.Description;
+            _context.Entry(modeTask);
+            _context.SaveChanges();
         }
 
         public void ChangePassword(string newPassword, string email)
@@ -78,6 +112,14 @@ namespace ASPProject.BL
             u.Password == user.Password).FirstOrDefault();
         }
 
+        internal void TakeTask(int id, string name)
+        {
+            var takedTask = GetTask(id);
+            takedTask.CurrentUser = GetUserByEmail(name).UserDetails;
+            _context.Entry(takedTask);
+            _context.SaveChanges();
+        }
+
         public void AddTeam(Team team)
         {
             _context.Teams.Add(team);
@@ -87,6 +129,12 @@ namespace ASPProject.BL
         public ICollection<Team> GetTeams()
         {
             return _context.Teams.ToList();
+        }
+
+        internal void AddTask(Task task)
+        {
+            _context.Tasks.Add(task);
+            _context.SaveChanges();
         }
     }
 }

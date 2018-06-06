@@ -59,6 +59,7 @@ namespace ASPProject.Controllers
                 HttpContext.Response.Cookies.Add(authCookie);
                 if(user.Roles == "Secretary") return RedirectToAction("Index", "Secretary");
                 else if(user.Roles == "Director") return RedirectToAction("Index", "Director");
+                else if (user.Roles == "User") return RedirectToAction("Index", "User");
                 return RedirectToAction("Index", "Home");
             }
 

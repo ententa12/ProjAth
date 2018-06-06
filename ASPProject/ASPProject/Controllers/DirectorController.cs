@@ -42,7 +42,7 @@ namespace ASPProject.Controllers
                 LastName = user.UserDetails.LastName,
                 Teams = user.UserDetails.Teams.ToList(),
                 Email = user.Email,
-                Tasks = user.UserDetails.Tasks.Select(p => new TaskSupViewModel()
+                Tasks = user.UserDetails.Tasks.Select(p => new TaskUserControllerViewModel()
                 {
                     Id = p.Id,
                     Description = p.Description,
@@ -133,13 +133,33 @@ namespace ASPProject.Controllers
                 Tasks = team.Tasks.Select(p => new TeamTaskViewModel()
                 {
                     Id = p.Id,
-                    FirstName = p.CurrentUser.FirstName,
-                    LastName = p.CurrentUser.LastName,
+                    FirstName = p.CurrentUser!=null? p.CurrentUser.FirstName: "Nieprzydzielony",
+                    LastName = p.CurrentUser != null ? p.CurrentUser.LastName:"",
                     Name = p.Name,
                     Status = (ASPProject.Entities.TaskStatus)p.Status
                 }).ToList()
             };
             return View(model);
+        }
+
+        public ActionResult AddTask(int id)
+        {
+            ViewBag.id = id;
+            return PartialView("_AddTask");
+        }
+        [HttpPost]
+        public ActionResult AddTask(AddTaskViewModel model,int id)
+        {
+            var task = new Task()
+            {
+                Team = _db.GetTeam(id),
+                Name = model.Name,
+                ExpectedTime = model.ExpectedTime,
+                Time = 0,
+                Status = TaskStatus.waiting
+            };
+            _db.AddTask(task);
+            return RedirectToAction("TeamDetails", new { id = id});
         }
 
     }

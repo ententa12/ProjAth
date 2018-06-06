@@ -19,7 +19,7 @@ namespace ASPProject.Entities
             modelBuilder.Entity<UserDetails>()
                 .HasMany<Task>(s => s.Tasks)
                 .WithRequired(g => g.CurrentUser)
-                .HasForeignKey<int>(s => s.UserId);
+                .HasForeignKey<int?>(s => s.UserId);
 
             modelBuilder.Entity<UserDetails>()
                 .HasRequired(s => s.User) 

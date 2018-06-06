@@ -1,0 +1,26 @@
+﻿@model List<ASPProject.Models.WorkViewModel>
+
+
+
+<table class="table">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">Data</th>
+            <th scope="col">Godzina rozpoczęcia</th>
+            <th scope="col">Godzina zakończenia</th>
+            <th scope="col">Całkowity czas</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Date</td>
+                <td>@item.StartHour.Value.ToString("hh\\:mm")</td>
+                <td>@((item.EndHour!=null? item.EndHour.Value.ToString("hh\\:mm") : "Praca trwa nadal"))</td>
+                <td>@((item.EndHour != null ? item.EndHour - item.StartHour : DateTime.Now.TimeOfDay - item.StartHour).Value.ToString("hh\\:mm"))</td>
+            </tr>
+        }
+    </tbody>
+</table>
+

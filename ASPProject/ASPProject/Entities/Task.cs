@@ -23,7 +23,7 @@ namespace ASPProject.Entities
         public TaskStatus Status { get; set; }
         public double ExpectedTime { get; set; }
 
-        public int UserId { get; set; }
+        public int? UserId { get; set; }
         public virtual UserDetails CurrentUser { get; set; }
 
         public virtual Team Team { get; set; }

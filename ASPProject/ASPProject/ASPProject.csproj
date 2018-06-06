@@ -226,14 +226,24 @@
     <Compile Include="Migrations\201806031814472_StartEndTimeInWork.Designer.cs">
       <DependentUpon>201806031814472_StartEndTimeInWork.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201806051909483_NulableUserInTask.cs" />
+    <Compile Include="Migrations\201806051909483_NulableUserInTask.Designer.cs">
+      <DependentUpon>201806051909483_NulableUserInTask.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\AddTaskViewModel.cs" />
     <Compile Include="Models\AddTeamViewModel.cs" />
     <Compile Include="Models\DetailsWorkerViewModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\SecretaryViewModels\PersonsViewModel.cs" />
+    <Compile Include="Models\TaskUserControllerViewModel.cs" />
+    <Compile Include="Models\TaskUserViewModel.cs" />
+    <Compile Include="Models\TeamTaskViewModel.cs" />
     <Compile Include="Models\TeamViewModel.cs" />
+    <Compile Include="Models\UserController.cs" />
+    <Compile Include="Models\WorkViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -426,6 +436,13 @@
     <Content Include="Views\Director\AddTeam.cshtml" />
     <Content Include="Views\Director\TeamList.cshtml" />
     <Content Include="Views\Director\TeamDetails.cshtml" />
+    <Content Include="Views\Director\_AddTask.cshtml" />
+    <Content Include="Views\Shared\_LayoutUser.cshtml" />
+    <Content Include="Views\User\Index.cshtml" />
+    <Content Include="Views\User\TaskDetails.cshtml" />
+    <Content Include="Views\User\_WorkDetails.cshtml" />
+    <Content Include="Views\User\MyTeams.cshtml" />
+    <Content Include="Views\User\FreeTeamTasks.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -448,6 +465,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201806031814472_StartEndTimeInWork.resx">
       <DependentUpon>201806031814472_StartEndTimeInWork.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806051909483_NulableUserInTask.resx">
+      <DependentUpon>201806051909483_NulableUserInTask.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

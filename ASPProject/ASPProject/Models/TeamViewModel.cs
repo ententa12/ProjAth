@@ -13,14 +13,7 @@ namespace ASPProject.Models
         public string LastName { get; set; }
     }
 
-    public class TeamTaskViewModel
-    {
-        public int Id { get; set; }
-        public string Name { get; set; }
-        public TaskStatus Status { get; set; }
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
-    }
+
 
     public class TeamViewModel
     {

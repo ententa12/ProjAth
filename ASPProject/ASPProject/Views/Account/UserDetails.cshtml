@@ -3,14 +3,17 @@
 @{
     ViewBag.Title = "UserDetails";
     if (ViewBag.Role == "Secretary") { Layout = "~/Views/Shared/_LayoutSecretary.cshtml"; }
+    else if(ViewBag.Role == "Director")
+    {
+        Layout = "~/Views/Shared/_LayoutDirector.cshtml";
+    }
     else
     {
-        Layout = "~/Views/Shared/_Layout.cshtml";
+        Layout = "~/Views/Shared/_LayoutUser.cshtml";
     }
 }
 <div class="center">
-    <h2>UserDetails</h2>
-
+    <h2>Moje Dane</h2>
     <div>
         <dl class="dl-horizontal">
             <dt>
@@ -49,12 +52,7 @@
     </div>
     <p>
         <button onclick="DisplayEdit('Password')" class="btn btn-primary">Zmień Hasło</button>
-        <button onclick="DisplayEdit('Edit')" class="btn btn-primary">Edytuj</button>
-
     </p>
-    <div id="Edit" style="display: none;">
-        @Html.Partial("_EditUser");
-    </div>
     <div id="Password" style="display: none;">
         @Html.Partial("_ChangePassword", new ASPProject.Models.ChangePasswordViewModel());
     </div>
