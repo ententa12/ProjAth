@@ -27,7 +27,7 @@ namespace ASPProject.Controllers
                 Email = p.Email,
                 FirstName = p.UserDetails.FirstName,
                 LastName = p.UserDetails.LastName,
-                Roles = p.Roles
+                Roles = p.Roles == "Director" ? Roles.Director : p.Roles == "User" ? Roles.User : Roles.Secretary
             });
             return View(model);
         }
@@ -35,22 +35,6 @@ namespace ASPProject.Controllers
         // GET: Secretary/Create
         public ActionResult Create()
         {
-            //        Dictionary<string, string> mounthPl =
-            //new Dictionary<string, string>() {
-            //    { "January", "Styczeń" },
-            //    { "February", "Luty" },
-            //    { "March", "Marzec" },
-            //    { "April", "Kwiecień" },
-            //    { "May", "Maj" },
-            //    { "June", "Czerwiec" },
-            //    { "July", "Lipiec" },
-            //    { "August", "Sierpień" },
-            //    { "September", "Wrzesień" },
-            //    { "October", "Październik" },
-            //    { "November", "Listopad" },
-            //    { "December", "Grudzień" },
-            //};
-            //mounthPl[]
             return View();
         }
 
@@ -67,7 +51,7 @@ namespace ASPProject.Controllers
                 {
                     Email = model.Email,
                     Password = password,
-                    Roles = model.Roles,
+                    Roles = model.Roles == Roles.Director?"Director": model.Roles == Roles.User ? "User":"Secretary",
                     UserDetails = new UserDetails()
                     {
                         FirstName = model.FirstName,
@@ -92,7 +76,7 @@ namespace ASPProject.Controllers
                 Email = user.Email,
                 FirstName = user.UserDetails.FirstName,
                 LastName = user.UserDetails.LastName,
-                Roles = user.Roles,
+                Roles = user.Roles == "Director" ? Roles.Director : user.Roles == "User" ? Roles.User : Roles.Secretary,
                 Id = user.UserDetailsId
             };
             return View(model);
@@ -107,7 +91,7 @@ namespace ASPProject.Controllers
                 var user = new User()
                 {
                     Email = model.Email,
-                    Roles = model.Roles,
+                    Roles = model.Roles == Roles.Director ? "Director" : model.Roles == Roles.User ? "User" : "Secretary",
                     UserDetails = new UserDetails()
                     {
                         FirstName = model.FirstName,
@@ -135,6 +119,28 @@ namespace ASPProject.Controllers
             {
                 return View();
             }
+        }
+
+        [HttpPost]
+        public ActionResult CheckExistingEmail(string Email)
+        {
+            try
+            {
+                return Json(!IsEmailExists(Email));
+            }
+            catch
+            {
+                return Json(false);
+            }
+        }
+
+        public bool IsEmailExists(string email)
+        {
+            if (_db.GetUsers().Where(x => x.Email == email).Count() != 0)
+            {
+                return true;
+            }
+            else return false;
         }
     }
 }

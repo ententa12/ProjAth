@@ -27,7 +27,7 @@ namespace ASPProject.Controllers
                 Email = p.Email,
                 FirstName = p.UserDetails.FirstName,
                 LastName = p.UserDetails.LastName,
-                Roles = p.Roles
+                Roles = p.Roles == "Director" ? Roles.Director : p.Roles == "User" ? Roles.User : Roles.Secretary
             });
             return View(model);
         }

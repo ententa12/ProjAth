@@ -85,7 +85,8 @@ namespace ASPProject.Models
     {
         [Required]
         [DataType(DataType.Password)]
-        [Display(Name = "Hasło")]
+        [Display(Name = "Hasło:")]
+        [RegularExpression(@"^(?=.*[a-zA-Z]{2})(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$", ErrorMessage = "Hasło musi posiadać min: 8 znaków, 2 litery, 1 dużą literę, 1 cyfrę")]
         public string Password { get; set; }
 
         [Required]

@@ -24,6 +24,10 @@ namespace ASPProject.Models
         [Display(Name = "Nazwa zespołu")]
         public string TeamName { get; set; }
         public bool InWork { get; set; }
+
+
+        public TimeSpan? StartTime { get; set; }
+
     }
 
     public class TaskWorkViewModel

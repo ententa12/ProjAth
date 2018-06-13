@@ -1,5 +1,5 @@
 ﻿@model IEnumerable<ASPProject.Models.SecretaryViewModels.PersonsViewModel>
-
+@using ASPProject.BL;
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_LayoutSecretary.cshtml";
@@ -37,16 +37,16 @@
                         @Html.DisplayFor(modelItem => item.Email)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.Roles)
+                        @item.Roles.GetDisplayName()
                     </td>
                     <td>
-                        @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-                        @Html.ActionLink("Delete", "Delete", new { id = item.Id }, new AjaxOptions { HttpMethod = "POST" })
+                        @Html.ActionLink("Edytuj", "Edit", new { id = item.Id }) |
+                        @Html.ActionLink("Usuń", "Delete", new { id = item.Id }, new AjaxOptions { HttpMethod = "POST" })
                     </td>
                 </tr>
             }
         </table>
     </div>
-   
+
 
 </div>

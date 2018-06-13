@@ -1,5 +1,5 @@
 ﻿@model IEnumerable<ASPProject.Models.SecretaryViewModels.PersonsViewModel>
-
+@using ASPProject.BL;
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_LayoutDirector.cshtml";
@@ -8,7 +8,7 @@
 
 
 <div class="center">
-<h2>Pracownicy</h2>
+    <h2>Pracownicy</h2>
     <div class="table-responsive-sm">
         <table class="table table-striped table-hover table-primary">
             <tr>
@@ -40,7 +40,7 @@
                         @Html.DisplayFor(modelItem => item.Email)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.Roles)
+                        @item.Roles.GetDisplayName()
                     </td>
                     <td>
                         <button class="btn" style="background-color:#7e8289" onclick="location.href='@Url.Action("DetailsWorker", "Director", new { id = item.Id })'">Szczegóły</button>

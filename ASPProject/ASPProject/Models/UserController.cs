@@ -64,7 +64,8 @@ namespace ASPProject.Models
                 Status = temp.Status,
                 TeamName = temp.Team.Name,
                 Time = temp.Time,
-                InWork = temp.Works.Where(x => x.EndHour == null).FirstOrDefault() == null ? false : true
+                InWork = temp.Works.Where(x => x.EndHour == null).FirstOrDefault() == null ? false : true,
+                StartTime = temp.Works.Where(x => x.EndHour == null).FirstOrDefault() == null ? TimeSpan.Parse("00:00:00") : temp.Works.Where(x => x.EndHour == null).FirstOrDefault().StartHour
             };
 
             return View(model);

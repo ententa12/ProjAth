@@ -20,7 +20,13 @@
           type="text/css" />
     <script type="text/javascript"
             src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-    <script src="~/Scripts/materialize/materialize.min.js"></script>
+    <script src="~/Scripts/materialize/js/materialize.min.js"></script>
+    <script>
+
+        $(document).ready(function () {
+            $('.sidenav').sidenav();
+        });
+    </script>
 </head>
 <body>
     <div class="header">
@@ -30,7 +36,7 @@
                 <ul class="left hide-on-med-and-down">
                     <li class="textcolor">
                         <a href="@Url.Action("Index", "Director")" class="nav-link">
-                             Pracownicy
+                            Pracownicy
                         </a>
                     </li>
                     <li class="textcolor">@Html.ActionLink("Lista zespołów", "TeamList", "Director")</li>
@@ -40,6 +46,23 @@
                 <ul class="right hide-on-med-and-down">
                     <li class="textcolor">@Html.ActionLink("Moje konto", "UserDetails", "Account")</li>
                     <li class="textcolor">@Html.ActionLink("Wyloguj", "LogOff", "Account")</li>
+                </ul>
+                <a href="#" class="sidenav-trigger" data-target="mobile-demo">
+                    <i class="material-icons">menu</i>
+                </a>
+
+                <ul class="sidenav" id="mobile-demo">
+                    <li>
+                        <a href="@Url.Action("Index", "Director")" class="nav-link">
+                            Pracownicy
+                        </a>
+                    </li>
+                    <li>
+                        @Html.ActionLink("Lista zespołów", "TeamList", "Director")
+                    </li>
+                    <li>@Html.ActionLink("Dodaj zespół", "AddTeam", "Director")</li>
+                    <li>@Html.ActionLink("Moje konto", "UserDetails", "Account")</li>
+                    <li>@Html.ActionLink("Wyloguj", "LogOff", "Account")</li>
                 </ul>
             </div>
         </nav>

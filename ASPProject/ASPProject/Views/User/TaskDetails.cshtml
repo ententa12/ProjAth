@@ -33,7 +33,7 @@
                 <div class="form-group">
                     @Html.LabelFor(model => model.Status, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
-                        @Html.EditorFor(model => model.Status, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.EnumDropDownListFor(model => model.Status, htmlAttributes: new { @class = "form-control" })
                         @Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger" })
                     </div>
                 </div>
@@ -72,9 +72,14 @@
                 @Html.DisplayFor(model => model.TeamName)
             </dd>
         </dl>
+        <div id="time" style="padding-bottom:10px;font-size:30px">
+            
+        </div>
+
         @if (Model.InWork)
         {
             <input type="button" class="btn btn-primary" value="Stop" onclick="location.href='@Url.Action("EndWork", "User", new { id = Model.Id })'" />
+
         }
         else
         {
@@ -86,3 +91,15 @@
 <div class="row">
     @Html.Action("WorkDetails")
 </div>
+@section Scripts{
+<script>
+        window.setInterval(function () {
+            var temp = '@Model.InWork';
+            if (temp === "True") {
+                let min;
+                min = @((DateTime.Now.TimeOfDay.TotalMinutes - Model.StartTime.Value.TotalMinutes).ToString());
+                document.getElementById("time").innerHTML = min + "min";
+            }
+        }, 1000);
+</script>
+}

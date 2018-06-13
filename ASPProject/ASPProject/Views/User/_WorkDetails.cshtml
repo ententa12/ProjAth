@@ -3,7 +3,10 @@
 
 
 <table class="table table-striped table-hover table-primary">
-    <thead >
+    <div id="time">
+        adsads
+    </div>
+    <thead>
         <tr>
             <th scope="col">Data</th>
             <th scope="col">Godzina rozpoczęcia</th>
@@ -17,7 +20,7 @@
             <tr>
                 <td>@item.Date</td>
                 <td>@item.StartHour.Value.ToString("hh\\:mm")</td>
-                <td>@((item.EndHour!=null? item.EndHour.Value.ToString("hh\\:mm") : "Praca trwa nadal"))</td>
+                <td>@((item.EndHour != null ? item.EndHour.Value.ToString("hh\\:mm") : "Praca trwa nadal"))</td>
                 <td>@((item.EndHour != null ? item.EndHour - item.StartHour : DateTime.Now.TimeOfDay - item.StartHour).Value.ToString("hh\\:mm"))</td>
             </tr>
         }
